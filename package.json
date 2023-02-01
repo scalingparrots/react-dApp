@@ -1,5 +1,7 @@
 {
   "name": "frontend-simple-react",
+  "description": "Template configuration for simple site in React",
+  "author": "Matteo Celani",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
