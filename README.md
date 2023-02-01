@@ -1,6 +1,52 @@
-# Getting Started with Create React App
+# Template configuration for simple site in React ⚛
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## File Structure
+
+```
+├── 📃 README.md
+├── 🛠️ package-lock.json
+├── 🛠️ package.json
+├── 📂 public
+│   ├── ⭐️ favicon.ico
+│   ├── 📝 index.html
+│   ├── 📸 logo192.png
+│   ├── 📸 logo512.png
+│   ├── 🛠️ manifest.json
+│   └── 🤖 robots.txt
+├── 📂 src
+│   ├── 🆎 @types
+│   │   └── 📂 assets
+│   │       └── 🛠️ index.d.ts
+│   ├── App.tsx
+│   ├── 📂 assets
+│   │   ├── 📂 css
+│   │   │   └── 🎨 index.css
+│   │   └── 📂 image
+│   │       ├── 📸 logo.png
+│   │       └── 📸 logo.svg
+│   ├── 📂 components
+│   ├── 📝 index.tsx
+│   ├── 📂 layout
+│   │   ├── 📂 footer
+│   │   │   ├── 🎨 footer.css
+│   │   │   └── 📝 index.tsx
+│   │   ├── index.tsx
+│   │   ├── 📂 loadable
+│   │   │   └── 📝 index.tsx
+│   │   └── 📂 navbar
+│   │       ├── 📝 index.tsx
+│   │       └── 🎨 navbar.css
+│   ├── 📂 pages
+│   │   └── home
+│   │       ├── 🎨 home.css
+│   │       └── 📝 index.tsx
+│   ├── 🛠️ react-app-env.d.ts
+│   └── 📂 routes
+│       └── 📝 Router.tsx
+└── 🛠️ tsconfig.json
+```
 
 ## Available Scripts
 
