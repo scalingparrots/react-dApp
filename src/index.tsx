@@ -2,15 +2,20 @@ import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-
+//React Redux
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
 //Raimbow Kit
 import "@rainbow-me/rainbowkit/styles.css";
-import { getDefaultWallets, RainbowKitProvider, lightTheme } from "@rainbow-me/rainbowkit";
+import {
+  getDefaultWallets,
+  RainbowKitProvider,
+  lightTheme,
+} from "@rainbow-me/rainbowkit";
 //Wagmi
 import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { mainnet, bsc, polygon, arbitrum, avalanche } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
-
 //Importing Styles
 import "./assets/style/index.scss";
 
@@ -47,7 +52,9 @@ root.render(
     >
       <React.StrictMode>
         <BrowserRouter>
-          <App />
+          <Provider store={store}>
+            <App />
+          </Provider>
         </BrowserRouter>
       </React.StrictMode>
     </RainbowKitProvider>

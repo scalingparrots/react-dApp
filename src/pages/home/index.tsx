@@ -1,19 +1,27 @@
 import React from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+//Importing Redux
+import { useSelector } from "react-redux";
+import { selectAccount } from "../../redux/reducers/account";
 //Importing Styles
 import "./home.scss";
 //Importing Assets
 import logo from "../../assets/image/logo.svg";
 
-function App() {
+const HomePage = () => {
+  const account = useSelector(selectAccount);
+
+  console.log(account);
+
   return (
     <div className="app">
       <div className="app-main">
         <img src={logo} className="app-logo" alt="logo" />
-        <p>Hello World!</p>
+        <p>Hello World !</p>
+        <ConnectButton />
       </div>
     </div>
   );
-}
+};
 
-export default App;
+export default HomePage;
