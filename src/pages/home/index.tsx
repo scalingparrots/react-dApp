@@ -1,25 +1,17 @@
 import React from "react";
-
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+//Importing Styles
+import "./home.scss";
+//Importing Assets
 import logo from "../../assets/image/logo.svg";
-import "./home.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hello World!
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <div className="app-main">
+        <img src={logo} className="app-logo" alt="logo" />
+        <p>Hello World!</p>
+      </div>
     </div>
   );
 }

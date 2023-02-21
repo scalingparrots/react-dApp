@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&family=Source+Code+Pro:wght@300;400;500&display=swap");
+
+@import "./variables";
+
+html {
+  font-size: $font-size-mobile; // 16px
+
+  // Mobile first
+  @media screen and (min-width: $breakpoint-md) {
+    font-size: $font-size-mobile;
+  }
+
+  @media screen and (min-width: $breakpoint-lg) {
+    font-size: $font-size-tablet;
+  }
+
+  @media screen and (min-width: $breakpoint-xl) {
+    font-size: $font-size-desktop;
+  }
+
+  @media screen and (min-width: $breakpoint-xxl) {
+    font-size: $font-size-large-desktop;
+  }
+}
+
+body {
+  background: $gray-550;
+  font-family: $font-family-primary;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-base;
+  margin: 0;
+  color: $text-color;
+}

@@ -1,7 +1,8 @@
-/* eslint-disable jsx-a11y/accessible-emoji */
 import React, { useState } from "react";
-import "./navbar.css";
-
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+//Importing Styles
+import "./navbar.scss";
+//Importing Assets
 import logo from "../../assets/image/logo.png";
 
 export default function NavBar() {
@@ -12,11 +13,11 @@ export default function NavBar() {
   };
 
   return (
-    <header className="Header">
+    <header className="header">
       <a href="/">
-        <img src={logo} className="Logo" alt="logo" />
+        <img src={logo} className="logo" alt="logo" />
       </a>
-      <nav className={`Nav ${isNavVisible ? "ActiveNav" : "DeactiveNav"}`}>
+      <nav className={`nav ${isNavVisible ? "active-nav" : "deactive-nav"}`}>
         <a
           href="https://www.scalingparrots.com/en/about-us/"
           target="_blank"
@@ -38,9 +39,9 @@ export default function NavBar() {
         >
           Contact
         </a>
-        <button>Connect Wallet</button>
+        <ConnectButton />
       </nav>
-      <button onClick={toggleNav} className="Burger">
+      <button onClick={toggleNav} className="burger">
         🍔
       </button>
     </header>

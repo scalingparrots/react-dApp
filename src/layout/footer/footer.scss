@@ -1,0 +1,27 @@
+@import "../../assets/style/variables.scss";
+
+footer {
+  position: fixed;
+  bottom: 0; /* Stick it to the bottom */
+  width: 100%;
+  
+  padding: 4px;
+  background-color: $primary-color;
+  text-align: center;
+
+  p {
+    color: $black;
+    font-size: $font-size-sm;
+  }
+
+  a {
+    color: $gray-100;
+    font-size: $font-size-xs;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: $gray-100;
+    text-decoration: underline;
+  }
+}
