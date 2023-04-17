@@ -1,3 +1,5 @@
+// Mobile first
+
 @import "../../assets/style/variables.scss";
 
 .app {
@@ -5,7 +7,7 @@
 }
 
 .app-logo {
-  max-width: 250px;
+  max-width: 225px;
   pointer-events: none;
 }
 
@@ -16,7 +18,7 @@
 }
 
 .app-main {
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,8 +26,8 @@
   color: white;
 
   p:first-of-type {
-    font-size: $font-size-xxl;
-    font-weight: $font-weight-medium;
+    font-size: $text-2xl;
+    font-weight: $font-medium;
   }
 }
 
@@ -35,5 +37,11 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media screen and (min-width: $breakpoint-sm) {
+  .app-main {
+    min-height: 90vh;
   }
 }

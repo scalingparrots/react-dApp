@@ -1,4 +1,4 @@
-import React, { Suspense, ComponentType } from "react";
+import { Suspense, ComponentType } from "react";
 
 // ===========================|| LOADABLE - LAZY LOADING ||=========================== //
 

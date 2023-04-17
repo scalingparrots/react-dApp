@@ -13,37 +13,57 @@ export default function NavBar() {
   };
 
   return (
-    <header className="header">
-      <a href="/">
-        <img src={logo} className="logo" alt="logo" />
-      </a>
-      <nav className={`nav ${isNavVisible ? "active-nav" : "deactive-nav"}`}>
-        <a
-          href="https://www.scalingparrots.com/en/about-us/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          About
+    <nav>
+      <div className="header">
+        <a href="/" target="_self">
+          <img src={logo} className="logo" alt="logo" />
         </a>
-        <a
-          href="https://www.scalingparrots.com/en/services/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Services
-        </a>
-        <a
-          href="https://www.scalingparrots.com/en/contacts/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Contact
-        </a>
-        <ConnectButton />
-      </nav>
-      <button onClick={toggleNav} className="burger">
-        🍔
-      </button>
-    </header>
+        <div className="hamburger-menu">
+          <div
+            onClick={toggleNav}
+            className={`hamburger ${isNavVisible ? "open" : ""}`}
+          >
+            <span className="line"></span>
+            <span className="line"></span>
+            <span className="line"></span>
+          </div>
+        </div>
+
+        <div className={`menu ${isNavVisible ? "" : "hidden"}`}>
+          <ul>
+            <li>
+              <a
+                href="https://www.scalingparrots.com/en/about-us/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                About
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.scalingparrots.com/en/services/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Services
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.scalingparrots.com/en/contacts/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Contact
+              </a>
+            </li>
+            <li>
+              <ConnectButton />
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   );
 }

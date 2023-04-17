@@ -3,31 +3,14 @@
 @import "./variables";
 
 html {
-  font-size: $font-size-mobile; // 16px
-
-  // Mobile first
-  @media screen and (min-width: $breakpoint-md) {
-    font-size: $font-size-mobile;
-  }
-
-  @media screen and (min-width: $breakpoint-lg) {
-    font-size: $font-size-tablet;
-  }
-
-  @media screen and (min-width: $breakpoint-xl) {
-    font-size: $font-size-desktop;
-  }
-
-  @media screen and (min-width: $breakpoint-xxl) {
-    font-size: $font-size-large-desktop;
-  }
+  font-size: $text-base; // 16px
 }
 
 body {
   background: $gray-550;
   font-family: $font-family-primary;
-  font-weight: $font-weight-regular;
-  line-height: $line-height-base;
+  font-weight: $font-normal;
+  line-height: $leading-normal;
   margin: 0;
   color: $text-color;
 }
