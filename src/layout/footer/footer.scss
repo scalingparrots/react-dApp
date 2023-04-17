@@ -8,17 +8,18 @@ footer {
   width: 100%;
   
   padding: 4px;
-  background-color: $primary-color;
+  background-color: $palette-02;
   text-align: center;
 
   p {
     color: $black;
-    font-size: $text-sm;
+    font-size: $text-base;
   }
 
   a {
     color: $gray-100;
-    font-size: $text-xs;
+    font-size: $text-sm;
+    font-weight: 600;
     text-decoration: none;
   }
 
