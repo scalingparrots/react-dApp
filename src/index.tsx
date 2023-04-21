@@ -9,13 +9,33 @@ import { store } from "./redux/store";
 import "@rainbow-me/rainbowkit/styles.css";
 import {
   getDefaultWallets,
+  connectorsForWallets,
   RainbowKitProvider,
   lightTheme,
+  Theme,
 } from "@rainbow-me/rainbowkit";
+import {
+  ledgerWallet,
+  trustWallet,
+  braveWallet,
+  okxWallet,
+  argentWallet,
+  bitskiWallet,
+  dawnWallet,
+  imTokenWallet,
+  injectedWallet,
+  mewWallet,
+  omniWallet,
+  safeWallet,
+  tahoWallet,
+  zerionWallet,
+} from "@rainbow-me/rainbowkit/wallets";
 //Wagmi
 import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { mainnet, bsc, polygon, arbitrum, avalanche } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
+//Merge
+import merge from "lodash.merge";
 //Importing Styles
 import "./assets/style/index.scss";
 
@@ -24,16 +44,52 @@ const { chains, provider } = configureChains(
   [publicProvider()]
 );
 
-const { connectors } = getDefaultWallets({
+const { wallets } = getDefaultWallets({
   appName: "React dApp Template",
   chains,
 });
+
+const connectors = connectorsForWallets([
+  ...wallets,
+  {
+    groupName: "Other",
+    wallets: [
+      ledgerWallet({ chains }),
+      trustWallet({ chains }),
+      braveWallet({ chains }),
+      okxWallet({ chains }),
+      argentWallet({ chains }),
+      bitskiWallet({ chains }),
+      dawnWallet({ chains }),
+      imTokenWallet({ chains }),
+      injectedWallet({ chains }),
+      mewWallet({ chains }),
+      omniWallet({ chains }),
+      safeWallet({ chains }),
+      tahoWallet({ chains }),
+      zerionWallet({ chains }),
+    ],
+  },
+]);
 
 const wagmiClient = createClient({
   autoConnect: true,
   connectors,
   provider,
 });
+
+const theme = merge(lightTheme(), {
+  colors: {
+    accentColor: "#1ac46b",
+    accentColorForeground: "#fff",
+    actionButtonSecondaryBackground: "#DADDD8",
+    connectButtonBackground: "#fff",
+    connectButtonBackgroundError: "#fff",
+    connectButtonInnerBackground: "#fff",
+    connectButtonText: "#000",
+    connectButtonTextError: "#FF494A",
+  },
+} as Theme);
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -42,13 +98,10 @@ const root = ReactDOM.createRoot(
 root.render(
   <WagmiConfig client={wagmiClient}>
     <RainbowKitProvider
-      modalSize="compact"
+      //modalSize="compact"
+      coolMode={true}
       chains={chains}
-      theme={lightTheme({
-        accentColor: "#fff",
-        accentColorForeground: "black",
-        fontStack: "system",
-      })}
+      theme={theme}
     >
       <React.StrictMode>
         <BrowserRouter>

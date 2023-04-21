@@ -17,14 +17,14 @@ footer {
   }
 
   a {
-    color: $gray-100;
+    color: #1ac46b;
     font-size: $text-sm;
     font-weight: 600;
     text-decoration: none;
   }
 
   a:hover {
-    color: $gray-100;
+    color: $primary-color;
     text-decoration: underline;
   }
 }
