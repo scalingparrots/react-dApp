@@ -32,20 +32,35 @@ import {
 } from "@rainbow-me/rainbowkit/wallets";
 //Wagmi
 import { configureChains, createClient, WagmiConfig } from "wagmi";
-import { mainnet, bsc, polygon, arbitrum, avalanche } from "wagmi/chains";
+import {
+  mainnet,
+  goerli,
+  bsc,
+  polygon,
+  arbitrum,
+  avalanche,
+} from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 //Merge
 import merge from "lodash.merge";
 //Importing Styles
 import "./assets/style/index.scss";
 
-const { chains, provider } = configureChains(
-  [mainnet, bsc, polygon, arbitrum, avalanche],
+const { chains, provider, webSocketProvider } = configureChains(
+  [
+    mainnet,
+    bsc,
+    polygon,
+    arbitrum,
+    avalanche,
+    ...(process.env.ENABLE_TESTNETS === "true" ? [goerli] : []),
+  ],
   [publicProvider()]
 );
 
 const { wallets } = getDefaultWallets({
   appName: "React dApp Template",
+  projectId: "YOUR_PROJECT_ID",
   chains,
 });
 
@@ -76,6 +91,7 @@ const wagmiClient = createClient({
   autoConnect: true,
   connectors,
   provider,
+  webSocketProvider,
 });
 
 const theme = merge(lightTheme(), {
@@ -96,20 +112,20 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <WagmiConfig client={wagmiClient}>
-    <RainbowKitProvider
-      //modalSize="compact"
-      coolMode={true}
-      chains={chains}
-      theme={theme}
-    >
-      <React.StrictMode>
+  <React.StrictMode>
+    <WagmiConfig client={wagmiClient}>
+      <RainbowKitProvider
+        //modalSize="compact"
+        coolMode={true}
+        chains={chains}
+        theme={theme}
+      >
         <BrowserRouter>
           <Provider store={store}>
             <App />
           </Provider>
         </BrowserRouter>
-      </React.StrictMode>
-    </RainbowKitProvider>
-  </WagmiConfig>
+      </RainbowKitProvider>
+    </WagmiConfig>
+  </React.StrictMode>
 );
