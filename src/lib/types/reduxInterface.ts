@@ -1,8 +1,10 @@
 import { Provider, Address } from "@wagmi/core";
+import { Signer } from "ethers";
 
 export interface initialState {
   address?: Address;
   ensName?: string;
-  provider?: Provider;
   balance?: number;
+  provider?: Provider;
+  signer?: Signer;
 }

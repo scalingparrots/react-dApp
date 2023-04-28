@@ -11,7 +11,9 @@ import logo from "../../assets/image/logo.svg";
 const HomePage = () => {
   const account = useSelector(selectAccount);
 
-  console.log(account);
+  React.useEffect(() => {
+    console.log(account);
+  }, [account]);
 
   return (
     <div className="app">

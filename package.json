@@ -2,10 +2,10 @@
   "name": "react-dapp",
   "description": "React Web3 dApp template",
   "author": "Matteo Celani",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "private": true,
   "dependencies": {
-    "@rainbow-me/rainbowkit": "^0.12.9",
+    "@rainbow-me/rainbowkit": "^0.12.12",
     "ethers": "^5.7.2",
     "react": "^18.2.0",
     "react-redux": "^8.0.5",
