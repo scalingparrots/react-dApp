@@ -16,12 +16,10 @@ const HomePage = () => {
   }, [account]);
 
   return (
-    <div className="app">
-      <div className="app-main">
-        <img src={logo} className="app-logo" alt="logo" />
-        <p>Hello World !</p>
-        <ConnectButton />
-      </div>
+    <div className="app-main">
+      <img src={logo} className="app-logo" alt="logo" />
+      <p>Hello World !</p>
+      <ConnectButton />
     </div>
   );
 };

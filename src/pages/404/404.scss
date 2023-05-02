@@ -1,0 +1,23 @@
+// Mobile first
+
+@import "../../assets/style/variables.scss";
+
+.app-main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h1 {
+        font-size: $text-4xl;
+        font-weight: $font-medium;
+        color: $primary-color;
+    }
+
+    h2 {
+        font-size: $text-2xl;
+        font-weight: $font-light;
+        color: $gray-100;
+    }
+}

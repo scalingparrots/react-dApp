@@ -1,7 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-//Importing Styles
-import "./navbar.scss";
 //Importing Assets
 import logo from "../../assets/image/logo.png";
 
