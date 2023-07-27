@@ -8,8 +8,8 @@ import { store } from "./redux/store";
 //Raimbow Kit
 import "@rainbow-me/rainbowkit/styles.css";
 import {
-  getDefaultWallets,
   connectorsForWallets,
+  getDefaultWallets,
   RainbowKitProvider,
   lightTheme,
   Theme,
@@ -24,6 +24,7 @@ import {
   dawnWallet,
   imTokenWallet,
   injectedWallet,
+  coinbaseWallet,
   mewWallet,
   omniWallet,
   safeWallet,
@@ -31,7 +32,7 @@ import {
   zerionWallet,
 } from "@rainbow-me/rainbowkit/wallets";
 //Wagmi
-import { configureChains, createClient, WagmiConfig } from "wagmi";
+import { configureChains, createConfig, WagmiConfig } from "wagmi";
 import {
   mainnet,
   goerli,
@@ -46,7 +47,7 @@ import merge from "lodash.merge";
 //Importing Styles
 import "./assets/style/index.scss";
 
-const { chains, provider, webSocketProvider } = configureChains(
+const { chains, publicClient, webSocketPublicClient } = configureChains(
   [
     mainnet,
     bsc,
@@ -58,9 +59,10 @@ const { chains, provider, webSocketProvider } = configureChains(
   [publicProvider()]
 );
 
+const projectId = "86483ce01d1bd6f32b61625b1f208f46";
 const { wallets } = getDefaultWallets({
   appName: "React dApp Template",
-  projectId: "YOUR_PROJECT_ID",
+  projectId,
   chains,
 });
 
@@ -69,29 +71,30 @@ const connectors = connectorsForWallets([
   {
     groupName: "Other",
     wallets: [
-      ledgerWallet({ chains }),
-      trustWallet({ chains }),
+      ledgerWallet({ projectId, chains }),
+      trustWallet({ projectId, chains }),
       braveWallet({ chains }),
-      okxWallet({ chains }),
-      argentWallet({ chains }),
+      okxWallet({ projectId, chains }),
+      argentWallet({ projectId, chains }),
       bitskiWallet({ chains }),
       dawnWallet({ chains }),
-      imTokenWallet({ chains }),
+      imTokenWallet({ projectId, chains }),
       injectedWallet({ chains }),
+      coinbaseWallet({ chains, appName: "React dApp Template" }), // "React dApp Template" is the name of the app
       mewWallet({ chains }),
-      omniWallet({ chains }),
+      omniWallet({ projectId, chains }),
       safeWallet({ chains }),
       tahoWallet({ chains }),
-      zerionWallet({ chains }),
+      zerionWallet({ projectId, chains }),
     ],
   },
 ]);
 
-const wagmiClient = createClient({
+const wagmiClient = createConfig({
   autoConnect: true,
   connectors,
-  provider,
-  webSocketProvider,
+  publicClient,
+  webSocketPublicClient,
 });
 
 const theme = merge(lightTheme(), {
@@ -113,11 +116,12 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <WagmiConfig client={wagmiClient}>
+    <WagmiConfig config={wagmiClient}>
       <RainbowKitProvider
         //modalSize="compact"
         coolMode={true}
         chains={chains}
+        initialChain={mainnet}
         theme={theme}
       >
         <BrowserRouter>

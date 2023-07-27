@@ -1,10 +1,17 @@
-import { Provider, Address } from "@wagmi/core";
+import { PublicClient, Address } from "@wagmi/core";
 import { Signer } from "ethers";
 
+export interface FetchBalanceResult {
+  decimals: number;
+  formatted: string;
+  symbol: string;
+  value: bigint;
+}
+
 export interface initialState {
-  address?: Address;
+  address: Address;
   ensName?: string;
-  balance?: number;
-  provider?: Provider;
+  balance: FetchBalanceResult;
+  provider?: PublicClient;
   signer?: Signer;
 }

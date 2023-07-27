@@ -14,7 +14,7 @@ import {
 } from "./redux/reducers/account";
 
 //Wagmi
-import { useAccount, useProvider, useSigner } from "wagmi";
+import { useAccount, usePublicClient, useWalletClient } from "wagmi";
 import { fetchBalance, fetchEnsName } from "@wagmi/core";
 
 function App() {
@@ -22,26 +22,32 @@ function App() {
   const routing = useRoutes(Router);
   const [isMounted, setIsMounted] = useState(false);
 
+  //Account Address
   const { address } = useAccount();
+  //Signer
+  const { data: signer } = useWalletClient();
+  //Provider
+  const publicClient = usePublicClient();
 
   dispatch(setAccountAddress(address));
   //Account Balance ETH
-  address
-    ? fetchBalance({
-        address: address,
-      }).then((balance) => dispatch(setAccountBalance(balance)))
-    : dispatch(setAccountBalance(0));
+  address &&
+    fetchBalance({
+      address: address,
+    })
+      .then((balance) => dispatch(setAccountBalance(balance)))
+      .catch((e) => console.error("Error fetching balance", e));
   //Account Ens Name
-  address
+  address && publicClient.chain.id === 1
     ? fetchEnsName({
         address: address,
       }).then((ensName) => dispatch(setAccountEnsName(ensName)))
     : dispatch(setAccountEnsName(null));
-  //Signer
-  const { data: signer } = useSigner();
 
-  dispatch(setAccountProvider(useProvider().chains?.[0]));
-  dispatch(setAccountSigner(signer));
+  useEffect(() => {
+    publicClient && dispatch(setAccountProvider(publicClient.chains?.[0]));
+    signer && dispatch(setAccountSigner(signer));
+  }, [dispatch, publicClient, signer]);
 
   useAccount({
     onDisconnect: () => {
