@@ -25,35 +25,35 @@ function App() {
   //Account Address
   const { address } = useAccount();
   //Signer
-  const { data: signer } = useWalletClient();
+  const { data: walletClient } = useWalletClient();
   //Provider
   const publicClient = usePublicClient();
-
-  dispatch(setAccountAddress(address));
-  //Account Balance ETH
-  address &&
-    fetchBalance({
-      address: address,
-    })
-      .then((balance) => dispatch(setAccountBalance(balance)))
-      .catch((e) => console.error("Error fetching balance", e));
-  //Account Ens Name
-  address && publicClient.chain.id === 1
-    ? fetchEnsName({
-        address: address,
-      }).then((ensName) => dispatch(setAccountEnsName(ensName)))
-    : dispatch(setAccountEnsName(null));
-
-  useEffect(() => {
-    publicClient && dispatch(setAccountProvider(publicClient.chains?.[0]));
-    signer && dispatch(setAccountSigner(signer));
-  }, [dispatch, publicClient, signer]);
 
   useAccount({
     onDisconnect: () => {
       dispatch(disconnectAccount());
     },
   });
+
+  useEffect(() => {
+    //Account Balance ETH
+    address &&
+      fetchBalance({
+        address: address,
+      })
+        .then((balance) => dispatch(setAccountBalance(balance)))
+        .catch((e) => console.error("Error fetching balance", e));
+    //Account Ens Name
+    address && publicClient.chain.id === 1
+      ? fetchEnsName({
+          address: address,
+        }).then((ensName) => dispatch(setAccountEnsName(ensName)))
+      : dispatch(setAccountEnsName(null));
+
+    address && dispatch(setAccountAddress(address));
+    publicClient && dispatch(setAccountProvider(publicClient.chains?.[0]));
+    walletClient && dispatch(setAccountSigner(walletClient));
+  }, [dispatch, address, publicClient, walletClient]);
 
   useEffect(() => {
     setIsMounted(true);
